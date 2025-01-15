@@ -1,0 +1,321 @@
+.rewards-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  
+    .search-bar {
+      margin-bottom: 20px;
+      
+      input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+    }
+  
+    .content-section {
+      display: flex;
+      gap: 20px;
+  
+      .left-column {
+        width: 250px;
+        
+        .categories-section{
+          background-color: #f4f4f4;
+          padding: 15px;
+          border-radius: 5px;
+          margin-bottom: 15px;
+  
+          h3 {
+            margin-bottom: 10px;
+          }
+  
+          ul {
+            list-style: none;
+            padding: 0;
+  
+            li {
+              padding: 8px 0;
+              border-bottom: 1px solid #e0e0e0;
+            }
+          }
+        }
+      }
+  
+      .right-column {
+        flex-grow: 1;
+        width: 60%;
+  
+        .sort-section {
+          position: relative;
+          margin-bottom: 20px;
+  
+          .sort-button {
+            padding: 10px 20px;
+            background-color: red;
+            border: none;
+            cursor: pointer;
+            margin: 0px 850px;
+          }
+  
+          .sort-dropdown {
+            position: absolute;
+            background-color: white;
+            border: 1px solid #ccc;
+            z-index: 10;
+  
+            button {
+              display: block;
+              width: 100%;
+              padding: 10px;
+              text-align: left;
+              border: none;
+              background: none;
+  
+              &:hover {
+                background-color: #f4f4f4;
+              }
+            }
+          }
+        }
+  
+        .rewards-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+          gap: 20px;
+  
+          .reward-card {
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+  
+            .reward-image {
+              width: 100%;
+              height: 200px;
+              object-fit: cover;
+            }
+  
+            .reward-details {
+              padding: 15px;
+  
+              .reward-status {
+                display: block;
+                margin: 10px 0;
+  
+                &.out-of-stock {
+                  color: red;
+                }
+  
+                &.high-demand {
+                  color: orange;
+                }
+              }
+  
+              .redeem-button {
+                width: 100%;
+                padding: 10px;
+                background-color: #007bff;
+                color: white;
+                border: none;
+                border-radius: 5px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .content-section {
+      flex-direction: column;
+  
+      .left-column {
+        width: 100%;
+      }
+    }
+  }
+
+  .drawer {
+    position: fixed;
+    top: 0;
+    right: -350px; /* Initially hidden */
+    width: 300px;
+    height: 100%;
+    background-color: white;
+    box-shadow: -2px 0 5px rgba(0,0,0,0.5);
+    transition: right 0.3s ease;
+    padding: 20px;
+    z-index: 1000;
+  }
+  
+  .drawer.open {
+    right: 0; /* Slide in */
+  }
+  
+
+  .drawer-footer {
+    justify-content: center;
+    padding: 10px 0;
+  }
+  
+  .apply-button {
+    width: 96%;
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+    background-color: #A52A2A;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    margin: auto;
+    margin-top: 728px;
+  }
+  
+  .apply-button:hover {
+    background-color: #8B0000; /* Darker shade on hover */
+  }
+
+  button.selected {
+    background-color: red;
+    color: white;
+  }
+
+  button {
+    background-color: white;
+    color: black;
+    border: 1px solid #ccc;
+    padding: 10px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    border-radius: 10px;
+  }
+
+  .button-group {
+    display: flex;
+    gap: 10px; /* Add space between buttons */
+    margin-top: 20px;
+  }
+
+//   .drawer-header {
+//     display: flex;
+//     justify-content: space-between;
+//     align-items: center;
+//     margin-bottom: 20px;
+//   }
+
+.reset-all {
+    margin-left: 148px;
+    color: #A52A2A;
+
+    &:hover {
+        color: #8B0000; /* Darker shade on hover */
+        cursor: pointer;
+    }
+}
+
+
+.pagination-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .pagination-controls button {
+    background-color: #A52A2A; /* Reddish-brown color */
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    margin: 0 10px;
+    border-radius: 5px;
+  }
+  
+  .pagination-controls button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .pagination-controls span {
+    margin: 0 10px;
+  }
+
+  .categories-section {
+    margin-bottom: 20px;
+  }
+  
+  .categories-section ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .categories-section li {
+    cursor: pointer;
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .categories-section li.selected {
+    background-color: #f8d7da;
+    color: #721c24;
+    border-color: #f5c6cb;
+  }
+  
+  .check-mark {
+    color: red;
+    font-weight: bold;
+  }
+  
+  .applied-filters {
+    margin-bottom: 20px;
+  }
+  
+  .applied-filters p {
+    margin: 0;
+    padding: 10px;
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+  }
+
+  .category-count{
+    color: #007bff;
+  }
+
+  .chips {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 10px;
+    background-color: #e0e0e0;
+    border-radius: 16px;
+    font-size: 14px;
+  }
+  
+  .chip .close-btn {
+    margin-left: 8px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  .chip.clear-filter {
+    background-color: #f8d7da;
+    color: #721c24;
+    cursor: pointer;
+  }
+
+  

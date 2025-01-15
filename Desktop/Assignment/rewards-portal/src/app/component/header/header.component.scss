@@ -1,0 +1,41 @@
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: red;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  
+    .logo-section {
+      img {
+        height: 50px;
+      }
+    }
+  
+    .header-icons {
+      display: flex;
+      gap: 20px;
+  
+      .icon-wrapper {
+        cursor: pointer;
+        
+        img {
+          width: 24px;
+          height: 24px;
+        }
+      }
+    }
+  }
+  
+  // Responsive design
+  @media (max-width: 768px) {
+    .header-container {
+      flex-direction: column;
+      
+      .header-icons {
+        margin-top: 10px;
+      }
+    }
+  }
+  
+  

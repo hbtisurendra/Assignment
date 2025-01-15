@@ -1,0 +1,111 @@
+<div class="rewards-container">
+  <div class="search-bar">
+    <input 
+      type="text" 
+      placeholder="Search rewards..." 
+      [(ngModel)]="searchTerm"
+    >
+  </div>
+  
+  <div class="content-section">
+    <span class="category-count">{{filteredRewards.length}} results found </span>
+    <div class="left-column">
+        <div class="applied-filters">
+            <h3>Applied Filters</h3>
+            <!-- <p *ngIf="selectedCategory !== 'All Rewards'">{{ selectedCategory }}</p> -->
+            <div class="chips">
+                <span *ngIf="selectedCategory !== 'All Rewards'" class="chip">
+                  {{ selectedCategory }}
+                  <span class="close-btn" (click)="clearCategoryFilter()">×</span>
+                </span>
+                <span *ngIf="selectedCategory !== 'All Rewards'" class="chip clear-filter" (click)="clearCategoryFilter()">
+                  Clear Filter ×
+                </span>
+              </div>
+          </div>
+      <div class="categories-section">
+        <h3>Categories</h3>
+        <ul>
+            <li 
+            *ngFor="let category of categories" 
+            (click)="selectCategory(category)"
+            [ngClass]="{'selected': selectedCategory === category}">
+            {{ category }}
+            <span *ngIf="selectedCategory === category" class="check-mark">✔</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="right-column">
+      <div class="sort-section">
+        <button 
+          class="sort-button" 
+          (click)="toggleSortMenu()">
+          Sort
+        </button>
+        <div 
+        class="drawer" 
+        [ngClass]="{'open': isSortMenuOpen}">
+        <div class="drawer-header">
+            <span>Filter By</span>
+            <span class="reset-all" (click)="resetAll()">Reset All</span>
+        </div>
+        <hr>
+        <span>Sort</span>
+        <div class="button-group">
+        <button (click)="selectSortOrder('asc')" 
+        [ngClass]="{'selected': selectedSortOrder === 'asc'}">
+          Name (A to Z)
+        </button>
+        <button  (click)="selectSortOrder('desc')" 
+        [ngClass]="{'selected': selectedSortOrder === 'desc'}"
+        >
+          Name (Z to A)
+        </button>
+    </div>
+        <button class="apply-button" (click)="applySort()">
+            Apply
+          </button>
+      </div>
+      </div>
+      
+      <div class="rewards-grid">
+        <div 
+          *ngFor="let reward of filteredRewards" 
+          class="reward-card">
+          <img 
+            [src]="reward.display_img_url || 'assets/placeholder.png'" 
+            alt="{{ reward.name }}"
+            class="reward-image"
+          >
+          <div class="reward-details">
+            <h3>{{ reward.name }}</h3>
+            <p class="reward-points">{{ reward.points }} Points</p>
+            
+            <span 
+              class="reward-status" 
+              [ngClass]="{
+                'out-of-stock': getRewardStatus(reward) === 'Out of Stock',
+                'high-demand': getRewardStatus(reward).includes('On High Demand')
+              }">
+              {{ getRewardStatus(reward) }}
+            </span>
+            
+            <button 
+              *ngIf="reward.quantity > 0" 
+              class="redeem-button">
+              Redeem Reward
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="pagination-controls">
+        <button (click)="previousPage()" [disabled]="currentPage === 1">Previous</button>
+        <span>Page {{ currentPage }}</span>
+        <button (click)="nextPage()" [disabled]="currentPage * itemsPerPage >= filteredRewards.length">Next</button>
+      </div>
+    </div>
+  </div>
+</div>
+
