@@ -72,7 +72,7 @@
       
       <div class="rewards-grid">
         <div 
-          *ngFor="let reward of filteredRewards" 
+          *ngFor="let reward of paginatedRewards" 
           class="reward-card">
           <img 
             [src]="reward.display_img_url || 'assets/placeholder.png'" 
